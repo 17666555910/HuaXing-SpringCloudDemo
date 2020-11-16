@@ -24,7 +24,7 @@ public class Send {
         //创建连接工厂
         ConnectionFactory factory = new ConnectionFactory();
         //设置rabbitmq地址和端口
-        factory.setHost("geosocial.ink");
+        factory.setHost("localhost");
         //默认端口为 5672
         factory.setPort(45672);
         //创建连接和消息通道,try 中生成的连接会在finally关闭

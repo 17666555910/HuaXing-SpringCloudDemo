@@ -21,7 +21,7 @@ public class Recv {
         //定义消息工厂
         ConnectionFactory connectionFactory = new ConnectionFactory();
         //设置端口和ip
-        connectionFactory.setHost("geosocial.ink");
+        connectionFactory.setHost("localhost");
         connectionFactory.setPort(45672);
         //创建连接
         Connection connection = connectionFactory.newConnection();
