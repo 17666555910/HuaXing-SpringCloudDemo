@@ -28,7 +28,7 @@ public class Recv {
         //创建消息通道
         Channel channel = connection.createChannel();
         //如果队列在服务其中存在，则不创建，如果已经在队列中存在，就要确保该队列的参数和生产者的参数是一致的，不然会报错
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(QUEUE_NAME,true,false,false,null);
         /*  函数编程的写法，等价于
             new DeliverCallback() {
                 @Override
