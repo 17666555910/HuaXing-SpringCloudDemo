@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
 /**
- * @Description 消息发送者(生产者)
+ * @Description 消息发送者(生产者)。
  * @author: yaoguangxing
  * @time: 2020/11/15 23:20
  */
