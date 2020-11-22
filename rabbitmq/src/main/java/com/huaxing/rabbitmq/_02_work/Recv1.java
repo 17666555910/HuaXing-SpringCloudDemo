@@ -16,7 +16,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * @Description work消息接收者（消费者）
  * @author: yaoguangxing
- * @time: 2020/11/16 22:31
+ * @time: 2020/11/21 22:31
  */
 @Slf4j
 public class Recv1 {

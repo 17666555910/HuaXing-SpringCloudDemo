@@ -14,7 +14,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * @Description work 模式消息发送者(生产者)。
  * @author: yaoguangxing
- * @time: 2020/11/15 23:20
+ * @time: 2020/11/21 23:20
  */
 @Slf4j
 public class Send2 {
