@@ -35,7 +35,7 @@ public class Send {
             channel.queueDeclare(QUEUE_NAME,true,false,false,null);
             //定义消息内容
             String message = "Hello Word Huaxing elaborate on ! to date "+new Date();
-            //通过通道往服务器中发送消息 channel.basicPublish("指定的交换机",发送的队列名称,消息的属性信息,字符串的byte数组);
+            //通过通道往服务器中发送消息 channel.basicPublish("指定的交换机",发送的队列名称（路由key）,消息的属性信息,字符串的byte数组);
             //MessageProperties.PERSISTENT_TEXT_PLAIN：消息是否持久化
             channel.basicPublish("",QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN,message.getBytes(StandardCharsets.UTF_8));
             log.info("send queue={};message={}",QUEUE_NAME,message);

@@ -1,4 +1,4 @@
-package com.huaxing.rabbitmq._03publish_subscribe;
+package com.huaxing.rabbitmq._04routing;
 
 import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
@@ -9,13 +9,13 @@ import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
 /**
- * @Description Publish/Subscribe(发布/订阅) 模式消息发送者(生产者)。
+ * @Description Routing 模式消息发送者(生产者)。
  * @author: yaoguangxing
- * @time: 2020/11/22 21:58
+ * @time: 2020/11/21 23:20
  */
 @Slf4j
-public class SendToPublishSubscribe {
-    private static String EXCHANGE_NAME = "pubSubExchange";
+public class SendToRouting {
+    private static String EXCHANGE_NAME = "routingExchange";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         //创建连接工厂
@@ -28,12 +28,14 @@ public class SendToPublishSubscribe {
         try (Connection connection = factory.newConnection();
              Channel channel = connection.createChannel()) {
             //定义交换机 channel.exchangeDeclare("交换机名称", 交换机类型);
-            channel.exchangeDeclare("pubSubExchange", BuiltinExchangeType.FANOUT);
+            channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
+            //定义消息路由
+            String routingKey = "info";
             //定义消息内容
-            String message = "Hello Word Huaxing elaborate on ! to date " + new Date();
+            String message = routingKey + ": directMsg";
             //通过通道往服务器中发送消息 channel.basicPublish("指定的交换机",发送的队列名称（路由key）,消息的属性信息,字符串的byte数组);
             //MessageProperties.PERSISTENT_TEXT_PLAIN：消息是否持久化
-            channel.basicPublish(EXCHANGE_NAME, "", MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes(StandardCharsets.UTF_8));
+            channel.basicPublish(EXCHANGE_NAME, routingKey, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes(StandardCharsets.UTF_8));
             log.info("消息发送成功");
         }
     }
