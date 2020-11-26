@@ -57,6 +57,14 @@ public class RecvToSpringBoot {
         }
     }
 
+    /**
+     * work 模式消费者1
+     *
+     * @param msg         消息
+     * @param deliveryTag 消息唯一标识
+     * @param channel     通道
+     * @throws IOException
+     */
     @RabbitListener(queuesToDeclare = @Queue("boot_queue_work"))
     public void receiveMsgToToWork(String msg, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         try {
@@ -72,6 +80,14 @@ public class RecvToSpringBoot {
             channel.basicNack(deliveryTag, false, false);
         }
     }
+    /**
+     * work 模式消费者2
+     *
+     * @param msg         消息
+     * @param deliveryTag 消息唯一标识
+     * @param channel     通道
+     * @throws IOException
+     */
     @RabbitListener(queuesToDeclare = @Queue("boot_queue_work"))
     public void receiveMsgToToWork2(String msg, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         try {
