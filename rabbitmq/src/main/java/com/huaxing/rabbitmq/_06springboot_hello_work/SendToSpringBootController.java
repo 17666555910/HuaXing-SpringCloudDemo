@@ -1,4 +1,4 @@
-package com.huaxing.rabbitmq._06springboot;
+package com.huaxing.rabbitmq._06springboot_hello_work;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

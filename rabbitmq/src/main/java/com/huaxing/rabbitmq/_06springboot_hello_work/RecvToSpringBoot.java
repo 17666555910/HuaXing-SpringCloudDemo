@@ -1,4 +1,4 @@
-package com.huaxing.rabbitmq._06springboot;
+package com.huaxing.rabbitmq._06springboot_hello_work;
 
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -6,7 +6,6 @@ import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Header;
-import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -25,8 +24,11 @@ public class RecvToSpringBoot {
      * 简单消息的接收
      *
      * @param msg
+     *  @RabbitListener：RabbitMQ 消息监听器
      */
-    @RabbitListener(queuesToDeclare = @Queue("boot_queue"))
+    @RabbitListener(
+            queuesToDeclare = @Queue("boot_queue")//使用默认的交换机 @Queue：队列消息配置
+    )
     public void receiveMsg(String msg) {
         log.info("收到的消息-> msg:{}", msg);
     }
@@ -39,7 +41,9 @@ public class RecvToSpringBoot {
      * @param channel     通道
      * @throws IOException
      */
-    @RabbitListener(queuesToDeclare = @Queue("boot_queue_ManuallySigned"))
+    @RabbitListener(
+            queuesToDeclare = @Queue("boot_queue_ManuallySigned")//使用默认的交换机 @Queue：队列消息配置
+    )
     public void receiveMsgToManuallySigned(String msg, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         try {
             //模拟出现异常
@@ -65,7 +69,9 @@ public class RecvToSpringBoot {
      * @param channel     通道
      * @throws IOException
      */
-    @RabbitListener(queuesToDeclare = @Queue("boot_queue_work"))
+    @RabbitListener(
+            queuesToDeclare = @Queue("boot_queue_work")//使用默认的交换机 @Queue：队列消息配置
+    )
     public void receiveMsgToToWork(String msg, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         try {
             //模拟服务器性能
@@ -88,7 +94,9 @@ public class RecvToSpringBoot {
      * @param channel     通道
      * @throws IOException
      */
-    @RabbitListener(queuesToDeclare = @Queue("boot_queue_work"))
+    @RabbitListener(
+            queuesToDeclare = @Queue("boot_queue_work")//使用默认的交换机 @Queue：队列消息配置
+    )
     public void receiveMsgToToWork2(String msg, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, Channel channel) throws IOException {
         try {
             //模拟服务器性能
