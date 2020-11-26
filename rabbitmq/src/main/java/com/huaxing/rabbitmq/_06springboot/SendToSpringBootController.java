@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Description SpringBoot 集成RabbitMQ --生产者
  * @author: 姚广星
- * @time: 2020/11/26 17:25
+ * @time: 2020/11/26 21:25
  */
 @RestController
 public class SendToSpringBootController {
@@ -17,10 +17,29 @@ public class SendToSpringBootController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    /**
+     * 简单的helloWord
+     *
+     * @param msg
+     * @return
+     */
     @RequestMapping("/queue")
     @ResponseBody
-    public String sendMsg(String msg){
-        rabbitTemplate.convertAndSend("","boot_queue",msg);
+    public String sendMsg(String msg) {
+        rabbitTemplate.convertAndSend("", "boot_queue", msg);
+        return "发送成功";
+    }
+
+    /**
+     * 手动签收实现方式发送端
+     *
+     * @param msg
+     * @return
+     */
+    @RequestMapping("/sendBootQueueManuallySigned")
+    @ResponseBody
+    public String sendBootQueueManuallySigned(String msg) {
+        rabbitTemplate.convertAndSend("", "boot_queue_ManuallySigned", msg);
         return "发送成功";
     }
 }
