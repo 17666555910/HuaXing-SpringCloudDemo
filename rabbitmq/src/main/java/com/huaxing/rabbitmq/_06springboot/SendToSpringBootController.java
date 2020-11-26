@@ -42,4 +42,19 @@ public class SendToSpringBootController {
         rabbitTemplate.convertAndSend("", "boot_queue_ManuallySigned", msg);
         return "发送成功";
     }
+
+    /**
+     * work 模式发送端
+     *
+     * @param msg
+     * @return
+     */
+    @RequestMapping("/sendBootQueueToWork")
+    @ResponseBody
+    public String sendBootQueueToWork(String msg) {
+        for (int i = 0; i < 20; i++) {
+            rabbitTemplate.convertAndSend("", "boot_queue_work", i + "：" + msg);
+        }
+        return "发送成功";
+    }
 }
