@@ -1,4 +1,4 @@
-package com.huaxing.rabbitmq._06springboot_hello_work;
+package com.huaxing.rabbitmq._06springboot;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +55,19 @@ public class SendToSpringBootController {
         for (int i = 0; i < 20; i++) {
             rabbitTemplate.convertAndSend("", "boot_queue_work", i + "：" + msg);
         }
+        return "发送成功";
+    }
+
+    /**
+     * 发布/订阅模式发送端
+     *
+     * @param msg
+     * @return
+     */
+    @RequestMapping("/sendBootQueueToPubSub")
+    @ResponseBody
+    public String sendBootQueueToPubSub(String msg) {
+        rabbitTemplate.convertAndSend("boot_queue_pub_sub", "", msg);
         return "发送成功";
     }
 }
