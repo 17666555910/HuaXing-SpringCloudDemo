@@ -70,4 +70,18 @@ public class SendToSpringBootController {
         rabbitTemplate.convertAndSend("boot_queue_pub_sub", "", msg);
         return "发送成功";
     }
+
+    /**
+     * routing 模式生产者
+     *
+     * @param msg
+     * @param routingKey    对应的routingKey
+     * @return
+     */
+    @RequestMapping("/sendBootQueueToRouting")
+    @ResponseBody
+    public String sendBootQueueToRouting(String msg,String routingKey) {
+        rabbitTemplate.convertAndSend("boot_queue_routing", routingKey, msg);
+        return "发送成功";
+    }
 }
