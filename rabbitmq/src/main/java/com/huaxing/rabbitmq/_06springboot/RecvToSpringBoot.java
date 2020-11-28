@@ -233,4 +233,64 @@ public class RecvToSpringBoot {
             channel.basicNack(deliveryTag, false, false);
         }
     }
+
+    /**
+     * Topics 模式消费者01
+     *
+     * @param msg
+     * @param deliveryTag
+     * @param channel
+     * @throws IOException
+     */
+    @RabbitListener(//RabbitMQ 监听器
+            bindings = @QueueBinding(//创建队列和交换机的绑定关系
+                    value = @Queue(),//创建个匿名队列
+                    exchange = @Exchange(name = "boot_queue_topics", type = "topic"),//定义交换机，指定交换机名称和类型
+                    key = {"log.*"}//定义routingKey  使用通配符接收routingKey
+            )
+    )
+    public void receiveMsgToTopics01(String msg,
+                                      @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, //@Header 获取消息体header中的信息
+                                      Channel channel) throws IOException {
+        try {
+            log.info("01 消费者收到的消息 -> msg:{}", msg);
+            //手动签收  channel.basicAck(消息唯一标识,是否批量签收);
+            channel.basicAck(deliveryTag, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //channel.basicNack(deliveryTag:消息的唯一标识,multiple:是否批量处理,requeue:是否重新放入队列);
+            //消息出现异常时，若requeue=false，则该消息会被放入死信队列，若没有配置死信队列则该消息会丢失。
+            channel.basicNack(deliveryTag, false, false);
+        }
+    }
+
+    /**
+     * Topics 模式消费者02
+     *
+     * @param msg
+     * @param deliveryTag
+     * @param channel
+     * @throws IOException
+     */
+    @RabbitListener(//RabbitMQ 监听器
+            bindings = @QueueBinding(//创建队列和交换机的绑定关系
+                    value = @Queue(),//创建个匿名队列
+                    exchange = @Exchange(name = "boot_queue_topics", type = "topic"),//定义交换机，指定交换机名称和类型
+                    key = {"log.error"}//定义routingKey
+            )
+    )
+    public void receiveMsgToTopics02(String msg,
+                                      @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag, //@Header 获取消息体header中的信息
+                                      Channel channel) throws IOException {
+        try {
+            log.info("02 消费者收到的消息 -> msg:{}", msg);
+            //手动签收  channel.basicAck(消息唯一标识,是否批量签收);
+            channel.basicAck(deliveryTag, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //channel.basicNack(deliveryTag:消息的唯一标识,multiple:是否批量处理,requeue:是否重新放入队列);
+            //消息出现异常时，若requeue=false，则该消息会被放入死信队列，若没有配置死信队列则该消息会丢失。
+            channel.basicNack(deliveryTag, false, false);
+        }
+    }
 }
