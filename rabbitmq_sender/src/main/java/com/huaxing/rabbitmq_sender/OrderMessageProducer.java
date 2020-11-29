@@ -28,4 +28,9 @@ public class OrderMessageProducer {
         channel.send(MessageBuilder.withPayload(msg).build());
         log.info("消息发送成功：" + msg);
     }
+
+    public void sendMsg(Order order) {
+        channel.send(MessageBuilder.withPayload(order).build());
+        log.info("消息发送成功：" + order.toString());
+    }
 }

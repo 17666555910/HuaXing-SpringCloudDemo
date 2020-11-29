@@ -21,18 +21,13 @@ spring:
           content-type: application/json      #设置消息的类型，本次为json
           default-binder: defaultRabbit
           group: saveOrderGroup               #分组
-#        saveOrderOutput:    #这个是消息通道的名称 ---> 保存订单输出通道
-#          destination: exchange-saveOrder     #exchange名称,交换模式默认是topic;把SpringCloud stream的消息输出通道绑定到RabbitMQ的exchange-saveOrder交换器。
-#          content-type: application/json      #设置消息的类型，本次为json
-#          default-binder: defaultRabbit
-#          group: saveOrderGroup               #分组
-#        orderInput:         #这个是消息通道的名称 ---> 订单输入通道
-#          destination: exchange-order     #exchange名称,交换模式默认是topic;把SpringCloud stream的消息输出通道绑定到RabbitMQ的exchange-saveOrder交换器。
-#          content-type: application/json      #设置消息的类型，本次为json
-#          default-binder: defaultRabbit
-#          group: orderGroup               #分组
-#        orderOutput:        #这个是消息通道的名称 ---> 订单输出通道
-#          destination: exchange-order     #exchange名称,交换模式默认是topic;把SpringCloud stream的消息输出通道绑定到RabbitMQ的exchange-saveOrder交换器。
-#          content-type: application/json      #设置消息的类型，本次为json
-#          default-binder: defaultRabbit
-#          group: orderGroup               #分组
+        orderInput:         #这个是消息通道的名称 ---> 订单输入通道
+          destination: exchange-order     #exchange名称,交换模式默认是topic;把SpringCloud stream的消息输出通道绑定到RabbitMQ的exchange-saveOrder交换器。
+          content-type: application/json      #设置消息的类型，本次为json
+          default-binder: defaultRabbit
+          group: orderGroup               #分组
+        orderOutput:        #这个是消息通道的名称 ---> 订单输出通道
+          destination: exchange-order     #exchange名称,交换模式默认是topic;把SpringCloud stream的消息输出通道绑定到RabbitMQ的exchange-saveOrder交换器。
+          content-type: application/json      #设置消息的类型，本次为json
+          default-binder: defaultRabbit
+          group: orderGroup               #分组
