@@ -19,6 +19,7 @@ public interface OrderInputChannelProcessor {
      * 订单输入通道（需要与配置文件中的保持一致）
      */
     String ORDER_INPUT = "orderInput";
+    //String ORDER_DLX_INPUT = "orderDlxInput";
 
     /**
      * 保存订单输入方法
@@ -35,5 +36,8 @@ public interface OrderInputChannelProcessor {
      */
     @Input(ORDER_INPUT)
     SubscribableChannel orderInput();
+
+    //@Input(ORDER_DLX_INPUT)
+    //SubscribableChannel orderDlxInput();
 
 }

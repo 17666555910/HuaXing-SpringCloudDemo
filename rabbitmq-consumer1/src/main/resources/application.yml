@@ -2,32 +2,42 @@ server:
   port: 8087
 
 spring:
+  application:
+    name: HuaXing-stream-consumer
   cloud:
     stream:
-      binders:  #ĞèÒª°ó¶¨µÄrabbitmqµÄ·şÎñĞÅÏ¢
-        defaultRabbit:  #¶¨ÒåµÄÃû³Æ£¬ÓÃÓÚbiddingÕûºÏ
-          type: rabbit  #ÏûÏ¢×é¼şÀàĞÍ
-          environment:  #ÅäÖÃrabbimqÁ¬½Ó»·¾³
+      binders:  #éœ€è¦ç»‘å®šçš„rabbitmqçš„æœåŠ¡ä¿¡æ¯
+        defaultRabbit:  #å®šä¹‰çš„åç§°ï¼Œç”¨äºbiddingæ•´åˆ
+          type: rabbit  #æ¶ˆæ¯ç»„ä»¶ç±»å‹
+          environment:  #é…ç½®rabbimqè¿æ¥ç¯å¢ƒ
             spring:
               rabbitmq:
-                host: geosocial.ink   #rabbitmq ·şÎñÆ÷µÄµØÖ·
-                port: 45672           #rabbitmq ·şÎñÆ÷¶Ë¿Ú
-                username: guest       #rabbitmq ÓÃ»§Ãû
-                password: guest       #rabbitmq ÃÜÂë
-                virtual-host: /       #ĞéÄâÂ·¾¶
-      bindings:        #·şÎñµÄÕûºÏ´¦Àí
-        saveOrderInput:    #Õâ¸öÊÇÏûÏ¢Í¨µÀµÄÃû³Æ ---> ±£´æ¶©µ¥ÊäÈëÍ¨µÀ
-          destination: exchange-saveOrder     #exchangeÃû³Æ,½»»»Ä£Ê½Ä¬ÈÏÊÇtopic;°ÑSpringCloud streamµÄÏûÏ¢Êä³öÍ¨µÀ°ó¶¨µ½RabbitMQµÄexchange-saveOrder½»»»Æ÷¡£
-          content-type: application/json      #ÉèÖÃÏûÏ¢µÄÀàĞÍ£¬±¾´ÎÎªjson
+                host: localhost   #rabbitmq æœåŠ¡å™¨çš„åœ°å€
+                port: 45672           #rabbitmq æœåŠ¡å™¨ç«¯å£
+                username: guest       #rabbitmq ç”¨æˆ·å
+                password: guest       #rabbitmq å¯†ç 
+                virtual-host: /       #è™šæ‹Ÿè·¯å¾„
+      bindings:        #æœåŠ¡çš„æ•´åˆå¤„ç†
+        saveOrderInput:    #è¿™ä¸ªæ˜¯æ¶ˆæ¯é€šé“çš„åç§° ---> ä¿å­˜è®¢å•è¾“å…¥é€šé“
+          destination: exchange-saveOrder     #exchangeåç§°,äº¤æ¢æ¨¡å¼é»˜è®¤æ˜¯topic;æŠŠSpringCloud streamçš„æ¶ˆæ¯è¾“å‡ºé€šé“ç»‘å®šåˆ°RabbitMQçš„exchange-saveOrderäº¤æ¢å™¨ã€‚
+          content-type: application/json      #è®¾ç½®æ¶ˆæ¯çš„ç±»å‹ï¼Œæœ¬æ¬¡ä¸ºjson
           default-binder: defaultRabbit
-          group: saveOrderGroup               #·Ö×é
-        orderInput:         #Õâ¸öÊÇÏûÏ¢Í¨µÀµÄÃû³Æ ---> ¶©µ¥ÊäÈëÍ¨µÀ
-          destination: exchange-order     #exchangeÃû³Æ,½»»»Ä£Ê½Ä¬ÈÏÊÇtopic;°ÑSpringCloud streamµÄÏûÏ¢Êä³öÍ¨µÀ°ó¶¨µ½RabbitMQµÄexchange-saveOrder½»»»Æ÷¡£
-          content-type: application/json      #ÉèÖÃÏûÏ¢µÄÀàĞÍ£¬±¾´ÎÎªjson
+          group: saveOrderGroup               #åˆ†ç»„
+        orderInput:         #è¿™ä¸ªæ˜¯æ¶ˆæ¯é€šé“çš„åç§° ---> è®¢å•è¾“å…¥é€šé“
+          destination: exchange-order     #exchangeåç§°,äº¤æ¢æ¨¡å¼é»˜è®¤æ˜¯topic;æŠŠSpringCloud streamçš„æ¶ˆæ¯è¾“å‡ºé€šé“ç»‘å®šåˆ°RabbitMQçš„exchange-saveOrderäº¤æ¢å™¨ã€‚
+          content-type: application/json      #è®¾ç½®æ¶ˆæ¯çš„ç±»å‹ï¼Œæœ¬æ¬¡ä¸ºjson
           default-binder: defaultRabbit
-          group: orderGroup               #·Ö×é
-        orderOutput:        #Õâ¸öÊÇÏûÏ¢Í¨µÀµÄÃû³Æ ---> ¶©µ¥Êä³öÍ¨µÀ
-          destination: exchange-order     #exchangeÃû³Æ,½»»»Ä£Ê½Ä¬ÈÏÊÇtopic;°ÑSpringCloud streamµÄÏûÏ¢Êä³öÍ¨µÀ°ó¶¨µ½RabbitMQµÄexchange-saveOrder½»»»Æ÷¡£
-          content-type: application/json      #ÉèÖÃÏûÏ¢µÄÀàĞÍ£¬±¾´ÎÎªjson
+          group: orderGroup               #åˆ†ç»„
+        orderOutput:        #è¿™ä¸ªæ˜¯æ¶ˆæ¯é€šé“çš„åç§° ---> è®¢å•è¾“å‡ºé€šé“
+          destination: exchange-order     #exchangeåç§°,äº¤æ¢æ¨¡å¼é»˜è®¤æ˜¯topic;æŠŠSpringCloud streamçš„æ¶ˆæ¯è¾“å‡ºé€šé“ç»‘å®šåˆ°RabbitMQçš„exchange-saveOrderäº¤æ¢å™¨ã€‚
+          content-type: application/json      #è®¾ç½®æ¶ˆæ¯çš„ç±»å‹ï¼Œæœ¬æ¬¡ä¸ºjson
           default-binder: defaultRabbit
-          group: orderGroup               #·Ö×é
+          group: orderGroup               #åˆ†ç»„
+      rabbit:
+        bindings:
+          saveOrderInput:
+            consumer:
+              #ttl: 20000 # é»˜è®¤ä¸åšé™åˆ¶ï¼Œå³æ— é™ã€‚æ¶ˆæ¯åœ¨é˜Ÿåˆ—ä¸­æœ€å¤§çš„å­˜æ´»æ—¶é—´ã€‚å½“æ¶ˆæ¯æ»ç•™è¶…è¿‡ttlæ—¶ï¼Œä¼šè¢«å½“æˆæ¶ˆè´¹å¤±è´¥æ¶ˆæ¯ï¼Œå³ä¼šè¢«è½¬å‘åˆ°æ­»ä¿¡é˜Ÿåˆ—æˆ–ä¸¢å¼ƒ.å³æ¶ˆæ¯åœ¨é˜Ÿåˆ—ä¸­å­˜æ´»çš„æœ€å¤§æ—¶é—´ä¸º 20s
+              # DLQç›¸å…³
+              autoBindDlq: true # æ˜¯å¦è‡ªåŠ¨å£°æ˜æ­»ä¿¡é˜Ÿåˆ—ï¼ˆDLQï¼‰å¹¶å°†å…¶ç»‘å®šåˆ°æ­»ä¿¡äº¤æ¢æœºï¼ˆDLXï¼‰ã€‚é»˜è®¤æ˜¯falseã€‚
+              republishToDlq: true

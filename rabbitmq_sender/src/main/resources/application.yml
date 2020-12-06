@@ -4,20 +4,20 @@ server:
 spring:
   cloud:
     stream:
-      binders:  #需要绑定的rabbitmq的服务信息
-        defaultRabbit:  #定义的名称，用于bidding整合
-          type: rabbit  #消息组件类型
-          environment:  #配置rabbimq连接环境
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
             spring:
               rabbitmq:
-                host: geosocial.ink   #rabbitmq 服务器的地址
-                port: 45672           #rabbitmq 服务器端口
-                username: guest       #rabbitmq 用户名
-                password: guest       #rabbitmq 密码
-                virtual-host: /       #虚拟路径
-      bindings:        #服务的整合处理
-        saveOrderOutput:    #这个是消息通道的名称 ---> 保存订单输出通道
-          destination: exchange-saveOrder     #exchange名称,交换模式默认是topic;把SpringCloud stream的消息输出通道绑定到RabbitMQ的exchange-saveOrder交换器。
-          content-type: application/json      #设置消息的类型，本次为json
+                host: localhost
+                port: 45672
+                username: guest
+                password: guest
+                virtual-host: /
+      bindings:
+        saveOrderOutput:
+          destination: exchange-saveOrder
+          content-type: application/json
           default-binder: defaultRabbit
-          group: saveOrderGroup               #分组
+          group: saveOrderGroup

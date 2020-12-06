@@ -29,6 +29,7 @@ public class OrderMessageListener {
     @SendTo(OrderOutputChannelProcessor.ORDER_OUTPUT)
     public String saveOrderMessage(Message<String> message) {
         log.info("保存订单的消息：" + message);
+        int i = 1 / 0;
         //处理之后的订单消息
         return "【" + message.getPayload() + "】";
     }
