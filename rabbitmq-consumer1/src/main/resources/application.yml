@@ -41,3 +41,5 @@ spring:
               # DLQ相关
               autoBindDlq: true # 是否自动声明死信队列（DLQ）并将其绑定到死信交换机（DLX）。默认是false。
               republishToDlq: true
+              #deadLetterExchange: exchange-order-dlq  #绑定exchange
+              #deadLetterQueueName: exchange-order-dlq.saveOrderInput  #死信队列名字：exchanName.queueName
