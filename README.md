@@ -12,6 +12,7 @@ https://blog.csdn.net/a767815662
 欢迎大家给与一定的支持，在公众号中作者会持续分享Java相关的技术以及面试、资料等。
 
 ##项目结构介绍​
+
     --- com.huaxing.rabbitmq
         | --- _01hello                  原生态API（hello 模式）
         | --- _02_work                  原生态API（work 模式）
