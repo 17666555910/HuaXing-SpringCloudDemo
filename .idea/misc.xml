@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/rabbitmq/pom.xml" />
         <option value="$PROJECT_DIR$/rabbitmq_sender/pom.xml" />
         <option value="$PROJECT_DIR$/rabbitmq-consumer1/pom.xml" />
+        <option value="$PROJECT_DIR$/design-mode/pom.xml" />
       </list>
     </option>
   </component>

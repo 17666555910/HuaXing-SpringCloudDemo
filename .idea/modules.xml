@@ -3,9 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/HuaXing-SpringCloudDemo.iml" filepath="$PROJECT_DIR$/.idea/HuaXing-SpringCloudDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rabbitmq/rabbitmq.iml" filepath="$PROJECT_DIR$/rabbitmq/rabbitmq.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rabbitmq-consumer1/rabbitmq-consumer1.iml" filepath="$PROJECT_DIR$/rabbitmq-consumer1/rabbitmq-consumer1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rabbitmq_sender/rabbitmq_sender.iml" filepath="$PROJECT_DIR$/rabbitmq_sender/rabbitmq_sender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/designMode/design-mode/design-mode.iml" filepath="$PROJECT_DIR$/designMode/design-mode/design-mode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rabbit/rabbitmq/rabbitmq.iml" filepath="$PROJECT_DIR$/rabbit/rabbitmq/rabbitmq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rabbit/rabbitmq-consumer1/rabbitmq-consumer1.iml" filepath="$PROJECT_DIR$/rabbit/rabbitmq-consumer1/rabbitmq-consumer1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rabbit/rabbitmq_sender/rabbitmq_sender.iml" filepath="$PROJECT_DIR$/rabbit/rabbitmq_sender/rabbitmq_sender.iml" />
     </modules>
   </component>
 </project>
